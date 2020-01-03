@@ -1,4 +1,4 @@
-# Creando una Red Social
+git pull https://github.com/YamiQuispe/LIM011-fe-social-network.git redSocial# Creando una Red Social
 
 Bienvenida a tu primer proyecto del track de Frontend en Laboratoria.
 
