@@ -3,6 +3,7 @@ import { components } from '../vistas/index.js';
 export const changeTmp = (hash) => {
   const sectionMain = document.getElementById('root');
   sectionMain.innerHTML = '';
+
   switch (hash) {
     case '':
     case '#':

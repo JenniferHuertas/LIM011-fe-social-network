@@ -3,6 +3,8 @@ import { inicioSesion } from '../firebase/firebase-inicio-sesion.js';
 // Figure:
 export const figureLoginRegistro = () => {
   const figureLogin = document.createElement('figure');
+  figureLogin.id = 'figureLoginRegistro';
+
   const imageEncabezado = `
     <img src='https://image.freepik.com/vector-gratis/comida-sana-personas_24908-55204.jpg' id='imgPrincipal'>
   `;
@@ -19,10 +21,10 @@ const mainLoginForm = () => {
   mainLogin.id = 'mainLogin';
 
   const inicioLogin = `
-           <figure>
+           <figure id='figureLogo'>
               <img src='img/logo.jpeg' id='logoLoginRegistro'>
            </figure>
-          <section>
+          <section id='seccionForm'>
               <p class='parrafo'>¡Bienvenido!</p>
               <form action="#" method="post">
                   <input type='email' id='emailLogin' class='inputRegistro' placeholder='Email' maxlength='30' name='usuarioLogin'>
@@ -39,12 +41,14 @@ const mainLoginForm = () => {
         `;
 
   mainLogin.innerHTML = inicioLogin;
+
   const eventoBotonLogin = mainLogin.querySelector('#botonLogin');
   eventoBotonLogin.addEventListener('click', () => {
     const emailLogin = document.querySelector('#emailLogin').value;
     const passwordLogin = document.querySelector('#passwordLogin').value;
     inicioSesion(emailLogin, passwordLogin);
   });
+
   return mainLogin;
 };
 
@@ -52,8 +56,9 @@ const mainLoginForm = () => {
 // Div contenedor de vista Login
 export const divVistaLogin = () => {
   const divContenedorLogin = document.createElement('div');
+  divContenedorLogin.id = 'divVistaLogin';
 
-  divContenedorLogin.appendChild(figureLoginRegistro()).style.justifyContent = 'flex-start';
+  divContenedorLogin.appendChild(figureLoginRegistro());
   divContenedorLogin.appendChild(mainLoginForm());
 
 
