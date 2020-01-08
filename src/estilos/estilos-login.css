@@ -1,4 +1,3 @@
-
 body {
     background: #f1dcf8;
     padding: 0em;
@@ -71,15 +70,50 @@ form {
     align-items: center;
 }
 
-.inputRegistro{
+.inputRegistro {
     display: flex;
-    margin: 2px;   
+    margin: 2px; 
+    padding-left: 3px;
+    box-sizing: border-box;
 }
+
+.inputEmail {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+}
+
+.inputEmail i {
+    position: absolute;
+    right: 0;
+    margin: 10px;
+    padding-right: 3px;
+    color: rgb(200, 130, 235);
+}
+
+.inputPassword {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+}
+
+.inputPassword i {
+    position: absolute;
+    right: 0;
+    margin: 10px;
+    padding-right: 3px;
+    color: rgb(200, 130, 235);
+}
+
 
 #botonLogin {
     display: flex;
     justify-content: center;
-    margin: 12px;
+    margin: 8px;
     padding: 4px;
     width: 150px;
     height: 30px;
@@ -99,7 +133,7 @@ form {
 .iconRed {
     display: flex;
     width: 50px;
-    margin: 10px;
+    margin: 8px;
 }
 
 
@@ -154,6 +188,7 @@ form {
     #figureLogo {
         display: flex;
         margin-top: 20px;
+        margin-bottom: 7px;
         padding: 0em;
     }
 
@@ -161,22 +196,18 @@ form {
         width: 140px;
         height: 70px;
         border-radius: 1em;
-        margin-bottom: 2px;
     }
 
     #seccionForm {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin-bottom: 25px;
+        margin-bottom: 40px;
     }
 
     .parrafo {
-        text-align: center;
         font-size: 13px;
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-        margin-top: 8px;
-        margin-bottom: 10px;
     }
   
     form {
@@ -194,7 +225,7 @@ form {
     #botonLogin {
         display: flex;
         justify-content: center;
-        margin: 15px;
+        margin: 8px;
         padding: 4px;
         width: 150px;
         height: 30px;
@@ -213,7 +244,6 @@ form {
     .iconRed {
         width: 40px;
         height: 40px;
-        padding: 8px;
     }
 
     #enlaceRegistro {

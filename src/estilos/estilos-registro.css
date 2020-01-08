@@ -13,10 +13,42 @@
     width: 700px;
 }
 
+.inputName {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+}
+
+.inputName i {
+    position: absolute;
+    right: 0;
+    margin: 10px;
+    padding-right: 3px;
+    color: rgb(200, 130, 235);
+}
+
+.inputLastName {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+}
+
+.inputLastName i {
+    position: absolute;
+    right: 0;
+    margin: 10px;
+    padding-right: 3px;
+    color: rgb(200, 130, 235);
+}
+
 #botonRegistro {
     display: flex;
     justify-content: center;
-    margin: 12px;
+    margin: 8px;
     padding: 4px;
     width: 150px;
     height: 30px;
@@ -49,8 +81,8 @@
     #botonRegistro {
         display: flex;
         justify-content: center;
-        margin: 15px;
-        padding: 4px;
+        margin: 8px;
+        padding: 2px;
         width: 150px;
         height: 30px;
         background-color: #754857;
