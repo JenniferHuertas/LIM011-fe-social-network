@@ -1,5 +1,6 @@
 import { inicioSesion } from '../firebase/firebase-inicio-sesion.js';
 
+
 // Figure:
 export const figureLoginRegistro = () => {
   const figureLogin = document.createElement('figure');
@@ -37,7 +38,7 @@ const mainLoginForm = () => {
                 <a href='#'><img src='https://icon-library.net/images/google-icon-search/google-icon-search-19.jpg' class='iconRed'></a>
             </div>
             <p class='parrafo'>¿No tienes una cuenta? <a href="#/creacuenta" id='enlaceRegistro'>Regístrate</a></p>   
-          </section>   
+          </section>
         `;
 
   mainLogin.innerHTML = inicioLogin;
@@ -46,7 +47,10 @@ const mainLoginForm = () => {
   eventoBotonLogin.addEventListener('click', () => {
     const emailLogin = document.querySelector('#emailLogin').value;
     const passwordLogin = document.querySelector('#passwordLogin').value;
-    inicioSesion(emailLogin, passwordLogin);
+    inicioSesion(emailLogin, passwordLogin)
+      .then(() => {
+        window.location.hash = '#/home';
+      });
   });
 
   return mainLogin;

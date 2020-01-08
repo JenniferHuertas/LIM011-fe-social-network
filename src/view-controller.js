@@ -1,7 +1,6 @@
-import { inicioSesion } from './firebase/firebase-inicio-sesion.js';
+/* import { inicioSesion } from './firebase/firebase-inicio-sesion.js';
 
 const changeHash = (hash) => {
-  // eslint-disable-next-line no-restricted-globals
   window.location.hash = hash;
 };
 
@@ -11,4 +10,4 @@ export const signInOnSubmit = () => {
   inicioSesion(email, password)
     .then(() => changeHash('/creacuenta'))
     .catch(() => {});
-};
+}; */
