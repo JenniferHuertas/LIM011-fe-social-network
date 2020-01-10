@@ -1,4 +1,4 @@
-export default () => {
+/*export default () => {
   const vistaMuro = `
     <section class= 'muro'>
       <header id='barrita'>
@@ -40,4 +40,4 @@ export default () => {
   divElement.classList.add('position');
   divElement.innerHTML = vistaMuro;
   return divElement;
-};
+};*/

@@ -1,5 +1,5 @@
-import { registro } from '../firebase/firebase-registro.js';
 import { figureLoginRegistro } from './login.js';
+import { accountRegistration } from '../view-controller.js';
 
 
 // Main Registro
@@ -14,10 +14,41 @@ const mainRegistroForm = () => {
         <section id='seccionForm'>
             <p class='parrafo'>Crea una cuenta.</p>
             <form action='#' method='post'>
-              <input type='text' id='name' class='inputRegistro' name='nombreUsuario' placeholder='Nombre' maxlength='30' >
-              <input type='text' id='lastName' class='inputRegistro' name='appellidoUsuario' placeholder='Apellido' maxlength='30'>
-              <input type='email' id='registroEmail' class='inputRegistro' placeholder='Email' maxlength='30' name='emailUsuario'>
-              <input type='password' id='registroPassword' class='inputRegistro' placeholder='Password' name='password' minlength='6'>
+              <div class='inputName'>
+                <input type='text' id='name' class='inputRegistro' name='nombreUsuario' placeholder='Nombre' maxlength='30' minlength='2'>
+                <i class="fas fa-user"></i>
+              </div>
+              <span name='messageName'></span>
+              <div class='inputLastName'>
+                <input type='text' id='lastName' class='inputRegistro' name='appellidoUsuario' placeholder='Apellido' maxlength='30' minlength='2'>
+                <i class="fas fa-user"></i>
+              </div>
+              <span name='messageLastName'></span>
+              <div class='inputEmail'>
+                <input type='email' class='inputRegistro' placeholder='Email' maxlength='30' name='emailUsuario'>
+                <i class="fas fa-at"></i>  
+              </div>
+              <span name='messageEmailRegistro'></span>
+              <div class='inputPassword'>
+                <input type='password' class='inputRegistro' placeholder='Password' name='password' minlength='6'>
+                <i class="fas fa-key"></i>
+              </div>
+              <span name='messagePasswordRegistro'></span>
+              <div>
+                <section>
+                  <label for="fecha-nac">Fecha de nacimiento:</label><br>
+                  <input type="date" name="fecha-nac" id="fecha-nac"><br>
+                </section>
+                <section>
+                  <label for="sexo">Sexo:</label><br>
+                  <select name="sexo" id="sexo">
+                    <option value="option" selected disabled>Seleccione</option>
+                    <option value="mujer">Mujer</option>
+                    <option value="hombre">Hombre</option>
+                    <option value="personalizado">Personalizado</option>
+                  </select>
+                </section>
+              </div>
               <button type='button' id='botonRegistro'>Regístrate</button>
             </form>
             <p class='parrafo'>O bien regístrate con...</p>
@@ -32,13 +63,7 @@ const mainRegistroForm = () => {
   mainRegistro.innerHTML = inicioRegistro;
   const botonRegistro = mainRegistro.querySelector('#botonRegistro');
 
-  botonRegistro.addEventListener('click', () => {
-    const emailRegistro = document.querySelector('#registroEmail').value;
-    const passwordRegistro = document.querySelector('#registroPassword').value;
-
-    registro(emailRegistro, passwordRegistro);
-    console.log('hola mundo');
-  });
+  botonRegistro.addEventListener('click', accountRegistration);
 
   return mainRegistro;
 };
@@ -54,5 +79,3 @@ export const divVistaRegistro = () => {
 
   return divContenedorRegistro;
 };
-
-// Evento del boton registro

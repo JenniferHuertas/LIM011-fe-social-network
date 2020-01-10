@@ -1,5 +1,4 @@
-import { inicioSesion } from '../firebase/firebase-inicio-sesion.js';
-
+import { signInOnSubmit } from '../view-controller.js';
 
 // Figure:
 export const figureLoginRegistro = () => {
@@ -28,8 +27,16 @@ const mainLoginForm = () => {
           <section id='seccionForm'>
               <p class='parrafo'>¡Bienvenido!</p>
               <form action="#" method="post">
-                  <input type='email' id='emailLogin' class='inputRegistro' placeholder='Email' maxlength='30' name='usuarioLogin'>
-                  <input type='password' id='passwordLogin' class='inputRegistro' placeholder='Password' name='passwordLogin' minlength='6'>
+                  <div class='inputEmail'>
+                    <input type='email' class='inputRegistro' placeholder='Email' maxlength='30' name='usuarioLogin'>
+                    <i class="fas fa-at"></i>
+                  </div>
+                  <span name='messageEmail'></span>
+                  <div class='inputPassword'>
+                    <input type='password' class='inputRegistro' placeholder='Password' name='passwordLogin' minlength='6'>
+                    <i class="fas fa-key"></i>
+                  </div>
+                  <span name='messagePassword'></span>
                   <button type='button' id='botonLogin'>Log in</button>
               </form>
               <p class='parrafo'>O bien ingresa con...</p>
@@ -38,20 +45,13 @@ const mainLoginForm = () => {
                 <a href='#'><img src='https://icon-library.net/images/google-icon-search/google-icon-search-19.jpg' class='iconRed'></a>
             </div>
             <p class='parrafo'>¿No tienes una cuenta? <a href="#/creacuenta" id='enlaceRegistro'>Regístrate</a></p>   
-          </section>
+          </section>   
         `;
 
   mainLogin.innerHTML = inicioLogin;
 
   const eventoBotonLogin = mainLogin.querySelector('#botonLogin');
-  eventoBotonLogin.addEventListener('click', () => {
-    const emailLogin = document.querySelector('#emailLogin').value;
-    const passwordLogin = document.querySelector('#passwordLogin').value;
-    inicioSesion(emailLogin, passwordLogin)
-      .then(() => {
-        window.location.hash = '#/home';
-      });
-  });
+  eventoBotonLogin.addEventListener('click', signInOnSubmit);
 
   return mainLogin;
 };
