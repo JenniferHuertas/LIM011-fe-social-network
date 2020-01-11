@@ -6,7 +6,19 @@ const headerHome = () => {
   header.id = 'headerVistaHome';
 
   header.innerHTML = `
-    <h3>Bienvenido a tu perfil</h3>`;
+  <section id='barraHorizontal'>
+  <input type="checkbox" id="menu-toggle"/>
+  <label id="trigger" for="menu-toggle"></label>
+  <label id="burger" for="menu-toggle"></label>
+  <ul id="menu">
+    <li><a href="#">Mariana Costa</a></li>
+    <li><a href="#">Cerrar Sesion</a></li>
+  </ul>
+  <figure id='figureLogo'>
+    <img src='img/logo.jpeg' id='logoLoginRegistro'>
+  </figure>
+  
+</section>    `;
 
   return header;
 };
@@ -41,9 +53,13 @@ const sectionNotes = (notes) => {
     <!-- Formulario -->
     <div>
       <form>
+        <div class='front'><h3>Mariana Costa</h3></div>
+        <div class='userProfile'>
+          <img src='https://image.flaticon.com/icons/png/512/145/145847.png' id='imgPerfil'>
+        </div>
         <input type="text" id="input-new-note" placeholder="¿Qué quieres compartir?">
         <button><i class="far fa-image"></i></button>
-        <button id="boton-add-note">Publicar</button>
+        <button id="boton-add-note">Compartir</button>
       </form>
     </div>
 

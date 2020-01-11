@@ -67,10 +67,10 @@ li {
         right: 10%;
         text-align: right;
     }
-    
+
     #trigger, #burger, #burger:before, #burger:after {
         position: absolute;
-        top: 25px;
+        top: 45px;
         left: 25px;
         background: #03A9F4;
         width: 30px;
@@ -116,8 +116,8 @@ li {
     #menu {
         position: absolute;
         margin: 0; padding: 0;
-        width: 110px;
-        height: 110px;
+        width: 100px;
+        height: 100px;
         background-color: #fff;
         border-bottom-right-radius: 100%;
         box-shadow: 0 2px 5px rgba(0,0,0,0.26);
