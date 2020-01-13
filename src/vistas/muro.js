@@ -1,4 +1,4 @@
-/*export default () => {
+/* export default () => {
   const vistaMuro = `
     <section class= 'muro'>
       <header id='barrita'>
@@ -15,8 +15,8 @@
     <li><a href="#">Portfolio</a></li>
     <li><a href="#">Contact</a></li>
   </ul>
-        </nav>    
-      </header>  
+        </nav>
+      </header>
         <section class='profile'>
             <div class='front'>Mariana Costa</div>
                 <div class='userProfile'>
@@ -24,11 +24,10 @@
                 </div>
             </div>
         </section>
-      
         <section id='container-posts' class='container-posts'>
             <div class='card-new-post'>
                 <textarea name='' id='' placeholder='¿Qué quieres compartir?'></textarea>
-                <i class="fas fa-image"></i> 
+                <i class="fas fa-image"></i>
                 <button class='share-post type='submit'>Compartir</button>
             </div>
         </section>
@@ -40,4 +39,4 @@
   divElement.classList.add('position');
   divElement.innerHTML = vistaMuro;
   return divElement;
-};*/
+}; */

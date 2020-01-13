@@ -14,7 +14,7 @@ export const signInOnSubmit = (event) => {
   const password = botonRegistro.closest('form').querySelector('input[type=password]');
   const textEmail = botonRegistro.closest('form').querySelector('span[name=messageEmail]');
   const textPassword = botonRegistro.closest('form').querySelector('span[name=messagePassword]');
-  console.log(email);
+
 
   if (email.value !== '' && password.value !== '') {
     inicioSesion(email.value, password.value)
@@ -157,17 +157,14 @@ export const addNoteOnSubmit = (event) => {
   addNote(dataPost)
     .then(() => {
       inputPost.value = '';
-      console.log('Nota agregada.');
     }).catch(() => {
       inputPost.value = '';
-      console.log('Error.');
     });
 };
 
 
 export const deleteNoteOnClick = objNote => deleteNote(objNote.id)
   .then(() => {
-    console.log('Post eliminado.');
   }).catch((error) => {
     console.error('Error: ', error);
   });
@@ -189,9 +186,7 @@ export const addUser = (event) => {
   addNote(dataPost)
     .then(() => {
       inputPost.value = '';
-      console.log('Nota agregada.');
     }).catch(() => {
       inputPost.value = '';
-      console.log('Error.');
     });
 };

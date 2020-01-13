@@ -18,17 +18,8 @@ export const viewChange = (hash) => {
   }
 };
 
-const viewInitial = (hash) => {
-  if (hash === '#/' || hash === '' || hash === '#') return viewChange('#/iniciasesion');
-
-  if (hash === '#/iniciasesion') return viewChange(hash);
-
-  return viewChange(hash);
-};
-
-
 export const initRouter = () => {
-  window.addEventListener('load', viewInitial(window.location.hash));
+  window.addEventListener('load', viewChange(window.location.hash));
 
-  if (('onhashchange' in window)) window.onhashchange = () => viewInitial(window.location.hash);
+  if (('onhashchange' in window)) window.onhashchange = () => viewChange(window.location.hash);
 };

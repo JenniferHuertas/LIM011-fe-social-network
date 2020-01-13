@@ -1,5 +1,5 @@
-import { inicioSesion } from '../src/firebase/firebase-inicio-sesion.js';
-import { registro } from '../src/firebase/firebase-registro.js';
+import { inicioSesion, registro } from '../src/controller/firebase-controller';
+
 
 const firebasemock = require('firebase-mock');
 
