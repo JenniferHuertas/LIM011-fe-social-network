@@ -41,8 +41,8 @@ const mainLoginForm = () => {
               </form>
               <p class='parrafo'>O bien ingresa con...</p>
             <div id='iconoRedesSociales'>
-                <a href='#'><img src='https://image.flaticon.com/icons/png/512/2392/premium/2392485.png' class='iconRed'></a>
-                <a href='#'><img src='https://icon-library.net/images/google-icon-search/google-icon-search-19.jpg' class='iconRed'></a>
+                <button><a href='#'><img src='https://image.flaticon.com/icons/png/512/2392/premium/2392485.png' class='iconRed'></a></button>
+                <button type="button" id="btnLoginGoogle"><a href='#'><img src='https://icon-library.net/images/google-icon-search/google-icon-search-19.jpg' class='iconRed'></a></button>
             </div>
             <p class='parrafo'>¿No tienes una cuenta? <a href="#/creacuenta" id='enlaceRegistro'>Regístrate</a></p>   
           </section>   

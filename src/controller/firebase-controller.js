@@ -1,40 +1,36 @@
-
-// Usuario:
-// currentUser: Permite obtener el usuario que accedió.
-export const user = () => firebase.auth().currentUser;
-
-
-export const setUser = (userId, userObject) => (
-  firebase.firestore().collection('users').doc(userId).set(userObject));
-
-
-export const getUser = () => firebase.firestore().collection('users').get();
-
-
-// Sesión:
-
-export const inicioSesion = (email, password) => (
-  firebase.auth().signInWithEmailAndPassword(email, password));
-
-
-export const loginFb = () => {
-  const provider = new firebase.auth.FacebookAuthProvider();
-  return firebase.auth().signInWithPopup(provider);
-};
-
-
+// Registro de usuarios con correo:
 export const registro = (email, password) => (
   firebase.auth().createUserWithEmailAndPassword(email, password));
 
+// Registro e inicio de sesiòn con google:
+export const googleRegister = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return firebase.auth().signInWithPopup(provider);
+};
 
-export const signOut = () => firebase.auth().signOut();
+// Inicio de Sesiòn
+export const inicioSesion = (email, password) => (
+  firebase.auth().signInWithEmailAndPassword(email, password));
 
+// Cerrar sesiòn
+// export const signOut = () => firebase.auth().signOut();
+
+// Usuarios
+export const usuariosGuardados = () => {
+  const user = firebase.auth().currentUser;
+  firebase.firestore().collection('users').doc(user.uid).set({
+    user: user.displayName,
+    avatar: user.photoURL,
+    uid: user.uid,
+    email: user.email,
+  });
+};
 
 // Posts:
 export const addNote = objectPost => firebase.firestore().collection('notes').add(objectPost);
 
 
-export const getNotes = callback => firebase.firestore().collection('notes').orderBy('datePost', 'desc')
+/* const getNotes = callback => firebase.firestore().collection('notes').orderBy('datePost', 'desc')
   .onSnapshot((querySnapshot) => {
     const data = [];
 
@@ -55,4 +51,4 @@ export const getNotes = callback => firebase.firestore().collection('notes').ord
   });
 
 
-export const deleteNote = idNote => firebase.firestore().collection('notes').doc(idNote).delete();
+const deleteNote = idNote => firebase.firestore().collection('notes').doc(idNote).delete(); */

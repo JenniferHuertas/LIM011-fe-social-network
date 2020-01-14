@@ -1,5 +1,5 @@
 import {
-  inicioSesion, registro, user, addNote, deleteNote,
+  inicioSesion, registro, googleRegister, usuariosGuardados,
 } from './controller/firebase-controller.js';
 
 const changeHash = (hash) => {
@@ -129,64 +129,12 @@ export const accountRegistration = (event) => {
   }
 };
 
-
-export const datePost = (date) => {
-  const yearPost = date.getFullYear();
-  const monthPost = date.getMonth() + 1;
-  const dayPost = date.getDate();
-  const hourPost = date.toLocaleTimeString();
-  const completeDate = `${dayPost} - ${monthPost} - ${yearPost} - ${hourPost}`;
-
-  return completeDate;
-};
-
-
-export const addNoteOnSubmit = (event) => {
-  event.preventDefault();
-
-  const inputPost = document.getElementById('input-new-note');
-  const userRed = user();
-  const date = new Date();
-  const dataPost = {
-    note: inputPost.value,
-    idUser: userRed.uid,
-    nameUser: userRed.displayName,
-    datePost: datePost(date),
-  };
-
-  addNote(dataPost)
-    .then(() => {
-      inputPost.value = '';
-    }).catch(() => {
-      inputPost.value = '';
-    });
-};
-
-
-export const deleteNoteOnClick = objNote => deleteNote(objNote.id)
-  .then(() => {
-  }).catch((error) => {
-    console.error('Error: ', error);
-  });
-
-
-export const addUser = (event) => {
-  event.preventDefault();
-
-  const inputPost = document.getElementById('input-new-note');
-  const userRed = user();
-  const date = new Date();
-  const dataPost = {
-    note: inputPost.value,
-    idUser: userRed.uid,
-    nameUser: userRed.displayName,
-    datePost: datePost(date),
-  };
-
-  addNote(dataPost)
-    .then(() => {
-      inputPost.value = '';
-    }).catch(() => {
-      inputPost.value = '';
+export const registerWithGoogle = () => {
+  googleRegister().then(() => {
+    changeHash('/home');
+    usuariosGuardados();
+  })
+    .catch((error) => {
+      console.log(error);
     });
 };

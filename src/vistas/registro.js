@@ -1,5 +1,5 @@
 import { figureLoginRegistro } from './login.js';
-import { accountRegistration } from '../view-controller.js';
+import { accountRegistration, registerWithGoogle } from '../view-controller.js';
 
 
 // Main Registro
@@ -53,17 +53,20 @@ const mainRegistroForm = () => {
             </form>
             <p class='parrafo'>O bien regístrate con...</p>
             <div id='iconoRedesSociales'>
-                <a href='#'><img src='https://image.flaticon.com/icons/png/512/2392/premium/2392485.png' class='iconRed'></a>
-                <a href='#'><img src='https://icon-library.net/images/google-icon-search/google-icon-search-19.jpg' class='iconRed'></a>
+                <button><a href='#'><img src='https://image.flaticon.com/icons/png/512/2392/premium/2392485.png' class='iconRed'></a></button>
+                <button type="button" id="btnRegisterGoogle"><a href='#'><img src='https://icon-library.net/images/google-icon-search/google-icon-search-19.jpg' class='iconRed'></a></button>
             </div>
             <p class='parrafo'>¿Tienes una cuenta? <a href="#/iniciasesion" id='enlaceRegistro'>Inicia Sesión</a></p>
         </section>     
       `;
 
   mainRegistro.innerHTML = inicioRegistro;
-  const botonRegistro = mainRegistro.querySelector('#botonRegistro');
 
+  const botonRegistro = mainRegistro.querySelector('#botonRegistro');
   botonRegistro.addEventListener('click', accountRegistration);
+
+  const btnLogInGoogle = mainRegistro.querySelector('#btnRegisterGoogle');
+  btnLogInGoogle.addEventListener('click', registerWithGoogle);
 
   return mainRegistro;
 };

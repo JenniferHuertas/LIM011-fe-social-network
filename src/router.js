@@ -1,6 +1,6 @@
-import { components } from './vistas/index.js';
+import { components } from './index.js';
 
-export const viewChange = (hash) => {
+const viewChange = (hash) => {
   const sectionMain = document.getElementById('root');
   sectionMain.innerHTML = '';
 
@@ -20,6 +20,5 @@ export const viewChange = (hash) => {
 
 export const initRouter = () => {
   window.addEventListener('load', viewChange(window.location.hash));
-
   if (('onhashchange' in window)) window.onhashchange = () => viewChange(window.location.hash);
 };

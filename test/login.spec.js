@@ -1,4 +1,4 @@
-import { inicioSesion, registro } from '../src/controller/firebase-controller';
+import { inicioSesion, registro, googleRegister } from '../src/controller/firebase-controller';
 
 
 const firebasemock = require('firebase-mock');
@@ -26,5 +26,12 @@ describe('registro', () => {
   it('Debería poder registrarse', () => registro('front@end.la', '123456')
     .then((user) => {
       expect(user.email).toBe('front@end.la');
+    }));
+});
+
+describe('googleRegister', () => {
+  it('Debería poder registrarse con google', () => googleRegister()
+    .then((user) => {
+      expect(user.isAnonymous).toBe(false);
     }));
 });
