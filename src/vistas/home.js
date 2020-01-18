@@ -1,10 +1,19 @@
-/* import { addNoteOnSubmit } from '../view-controller.js';
-import { getNotes } from '../controller/firebase-controller.js'; */
+import { addNotes } from '../view-controller.js';
+
+const notas = () => {
+  const items = document.createElement('div');
+  items.innerHTML = `
+  <textarea name='' id='showPost'></textarea>
+  `;
+  return items;
+};
+
 
 export default () => {
-  const vistaMuro = `
+  const vistaMuro = document.createElement('main');
+  const home = `
   <header>
-    <nav>
+    <nav id='barraHorizontal'>
       <figure id='figureLogo'>
         <img src='img/logo.jpeg' id='logoLoginRegistro'>
       </figure>
@@ -27,23 +36,32 @@ export default () => {
     </nav>  
   </header>
   <section class='profile'>
-  <div class='front'>Mariana Costa</div>
+  <div class='front'>Usuario</div>
   <span class='userProfile'>
     <img src='https://image.flaticon.com/icons/png/512/145/145847.png' id='imgPerfil'>
   </span>
-  <section id='container-posts' class='container-posts'>
-    <div class='card-new-post'>
-      <textarea name='' id='' placeholder='¿Qué quieres compartir?'></textarea>
+  <section id='publicar-posts' class='publicar-posts'>
+    <div class='card-create-post'>
+      <textarea name='' id='createPost' placeholder='¿Qué quieres compartir?'></textarea>
       <i class="fas fa-image"></i>
       <button id='addPost' class='share-post type='submit'>Compartir</button>
     </div>
-  </section>
-
-    
+  </section>  
 `;
 
-  const divElement = document.createElement('div');
-  divElement.classList.add('position');
-  divElement.innerHTML = vistaMuro;
-  return divElement;
+  vistaMuro.innerHTML = home;
+  const btnAddpost = vistaMuro.querySelector('#addPost');
+  btnAddpost.addEventListener('click', addNotes);
+
+  return vistaMuro;
+};
+export const divVistaHome = () => {
+  const divContenedorHome = document.createElement('div');
+  divContenedorHome.id = 'divVistaHome';
+
+  divContenedorHome.appendChild(notas());
+  divContenedorHome.appendChild(divVistaHome());
+
+
+  return divContenedorHome;
 };

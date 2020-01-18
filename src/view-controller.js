@@ -1,5 +1,5 @@
 import {
-  inicioSesion, registro, googleRegister, usuariosGuardados,
+  inicioSesion, registro, googleRegister, addNote,
 } from './controller/firebase-controller.js';
 
 const changeHash = (hash) => {
@@ -132,9 +132,18 @@ export const accountRegistration = (event) => {
 export const registerWithGoogle = () => {
   googleRegister().then(() => {
     changeHash('/home');
-    usuariosGuardados();
   })
     .catch((error) => {
       console.log(error);
     });
+};
+
+export const addNotes = () => {
+  const textos = document.getElementById('createPost').value;
+  const postCreate = { publicaciones: textos };
+  addNote(postCreate).then(() => {
+    console.log('agrego nota');
+  }).catch(() => {
+    console.log('error');
+  });
 };

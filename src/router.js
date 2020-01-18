@@ -1,4 +1,5 @@
 import { components } from './index.js';
+/* import { getNotes } from './controller/firebase-controller.js'; */
 
 const viewChange = (hash) => {
   const sectionMain = document.getElementById('root');

@@ -29,11 +29,14 @@ export const usuariosGuardados = () => {
 // Posts:
 export const addNote = objectPost => firebase.firestore().collection('notes').add(objectPost);
 
-
-/* const getNotes = callback => firebase.firestore().collection('notes').orderBy('datePost', 'desc')
+/* function addNote2(objectPost) {
+  return firebase.firestore().collection('notes').add(objectPost);
+} */
+export const getNotes = () => firebase.firestore().collection('notes').get();
+// eslint-disable-next-line max-len
+/* export const getNotes = callback => firebase.firestore().collection('notes').orderBy('datePost', 'desc')
   .onSnapshot((querySnapshot) => {
     const data = [];
-
     querySnapshot.forEach((doc) => {
       data.push({
         id: doc.id,
@@ -41,14 +44,11 @@ export const addNote = objectPost => firebase.firestore().collection('notes').ad
         note: doc.data().note,
         date: doc.data().datePost,
       });
-
       console.log(doc.id);
     });
-
     console.log(data);
-
     callback(data);
   });
+  */
 
-
-const deleteNote = idNote => firebase.firestore().collection('notes').doc(idNote).delete(); */
+/* const deleteNote = idNote => firebase.firestore().collection('notes').doc(idNote).delete(); */

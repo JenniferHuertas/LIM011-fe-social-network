@@ -1,4 +1,4 @@
-import { signInOnSubmit } from '../view-controller.js';
+import { signInOnSubmit, registerWithGoogle } from '../view-controller.js';
 
 // Figure:
 export const figureLoginRegistro = () => {
@@ -52,6 +52,9 @@ const mainLoginForm = () => {
 
   const eventoBotonLogin = mainLogin.querySelector('#botonLogin');
   eventoBotonLogin.addEventListener('click', signInOnSubmit);
+
+  const btnLogInGoogle = mainLogin.querySelector('#btnLoginGoogle');
+  btnLogInGoogle.addEventListener('click', registerWithGoogle);
 
   return mainLogin;
 };
