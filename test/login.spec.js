@@ -1,4 +1,5 @@
-/*
+import { inicioSesion, registro, googleRegister } from '../src/model/autenticar-usuario';
+
 const firebasemock = require('firebase-mock');
 
 const mockauth = new firebasemock.MockFirebase();
@@ -32,4 +33,4 @@ describe('googleRegister', () => {
     .then((user) => {
       expect(user.isAnonymous).toBe(false);
     }));
-}); */
+});
