@@ -100,22 +100,22 @@ Antes de empezar el proyecto, recuerda agregar tus objetivos de aprendizaje pend
 
 ## Javascript
 
-[ ] Uso de callbacks
-[ ] Consumo de Promesas
+[ si] Uso de callbacks
+[ si] Consumo de Promesas
 [ si ] Uso ES modules (import | export)
 
 ## Firebase
 
-[ ] Firestore
-[ ] Firebase Auth
+[si ] Firestore
+[si ] Firebase Auth
 [ ] Firebase security rules
-[ ] Uso de onSnapshot | onAuthStateChanged
+[ si] Uso de onSnapshot | onAuthStateChanged
 
 ## Testing
 
-[ ] Testeo de tus funciones
-[ ] Testeo asíncrono
-[ ] Mocking
+[si ] Testeo de tus funciones
+[si ] Testeo asíncrono
+[si ] Mocking
 
 ## Colaboración en Github
 
