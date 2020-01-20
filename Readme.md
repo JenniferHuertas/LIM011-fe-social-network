@@ -135,5 +135,5 @@ Antes de empezar el proyecto, recuerda agregar tus objetivos de aprendizaje pend
 [ si ] Modularización
 [ si ] Nomenclatura / Semántica
 [ si ] Linting
-
+probando
 
