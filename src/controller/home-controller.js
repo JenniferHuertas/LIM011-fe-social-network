@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { addNote } from '../model/publicar-post.js';
+import { addNote } from '../model/publicar-post';
 
 export const addNotes = () => {
   const textos = document.getElementById('createPost').value;

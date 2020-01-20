@@ -53,7 +53,6 @@ const mainRegistroForm = () => {
             </form>
             <p class='parrafo'>O bien regístrate con...</p>
             <div id='iconoRedesSociales'>
-                <button><a href='#'><img src='https://image.flaticon.com/icons/png/512/2392/premium/2392485.png' class='iconRed'></a></button>
                 <button type="button" id="btnRegisterGoogle"><a href='#'><img src='https://icon-library.net/images/google-icon-search/google-icon-search-19.jpg' class='iconRed'></a></button>
             </div>
             <p class='parrafo'>¿Tienes una cuenta? <a href="#/iniciasesion" id='enlaceRegistro'>Inicia Sesión</a></p>
