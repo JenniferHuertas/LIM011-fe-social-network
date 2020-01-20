@@ -1,6 +1,6 @@
-import { initRouter } from './router.js';
+import { initRouter } from './routers/index.js';
 
-const init = () => {
+const configInitial = () => {
   const firebaseConfig = {
     apiKey: 'AIzaSyAHYd_wPzROTqcHicMCcvNeGKlM0FnOs9I',
     authDomain: 'social-network-42ae7.firebaseapp.com',
@@ -11,11 +11,8 @@ const init = () => {
     appId: '1:788626957504:web:85c6ca422b32f7cc433925',
     measurementId: 'G-PYGE45NH4C',
   };
-
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
   initRouter();
 };
-
-window.addEventListener('load', init);
+window.addEventListener('load', configInitial);

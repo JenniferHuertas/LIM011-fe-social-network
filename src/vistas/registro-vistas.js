@@ -1,5 +1,5 @@
-import { figureLoginRegistro } from './login.js';
-import { accountRegistration, registerWithGoogle } from '../view-controller.js';
+import { figureLoginRegistro } from './login-vistas.js';
+import { accountRegistration, registerWithGoogle } from '../controller/register-controller.js';
 
 
 // Main Registro

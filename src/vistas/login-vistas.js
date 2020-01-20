@@ -1,4 +1,5 @@
-import { signInOnSubmit, registerWithGoogle } from '../view-controller.js';
+import { signInOnSubmit } from '../controller/login-controller.js';
+import { registerWithGoogle } from '../controller/register-controller.js';
 
 // Figure:
 export const figureLoginRegistro = () => {
