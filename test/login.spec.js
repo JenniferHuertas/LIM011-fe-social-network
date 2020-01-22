@@ -1,4 +1,4 @@
-import { inicioSesion, registro, googleRegister } from '../src/model/autenticar-usuario';
+import { inicioSesion, registro, googleRegister } from '../src/model/autenticar-usuario.js';
 
 const firebasemock = require('firebase-mock');
 

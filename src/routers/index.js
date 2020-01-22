@@ -1,7 +1,15 @@
 /* eslint-disable no-console */
-import { viewChange } from './router.js';
+import { changeView } from './router.js';
 
 export const initRouter = () => {
-  window.addEventListener('load', viewChange(window.location.hash));
-  if (('onhashchange' in window)) window.onhashchange = () => viewChange(window.location.hash);
+  changeView(window.location.hash);
+  window.addEventListener('hashchange', () => (changeView(window.location.hash)));
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      window.location.hash = '#/home';
+      console.log('Existe usuario logueado');
+    } else {
+      console.log('No existe usuario logueado');
+    }
+  });
 };

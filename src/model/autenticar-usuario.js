@@ -1,26 +1,17 @@
-export const registro = (email, password) => (
-  firebase.auth().createUserWithEmailAndPassword(email, password));
+export const signInUserEmail = (email, password) => (
+  firebase.auth().signInWithEmailAndPassword(email, password));
 
-// Registro e inicio de sesiòn con google:
-export const googleRegister = () => {
+export const signInUserGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider);
 };
-
-// Inicio de Sesiòn
-export const inicioSesion = (email, password) => (
-  firebase.auth().signInWithEmailAndPassword(email, password));
-
-// Cerrar sesiòn
-// export const signOut = () => firebase.auth().signOut();
-
-// Usuarios
-export const usuariosGuardados = () => {
-  const user = firebase.auth().currentUser;
-  firebase.firestore().collection('users').doc(user.uid).set({
-    user: user.displayName,
-    avatar: user.photoURL,
-    uid: user.uid,
-    email: user.email,
-  });
+export const signInUserFacebook = () => {
+  const provider = new firebase.auth.FacebookAuthProvider();
+  return firebase.auth().signInWithPopup(provider);
 };
+export const registerUserEmail = (email, password) => (
+  firebase.auth().createUserWithEmailAndPassword(email, password));
+
+export const signOut = () => firebase.auth().signOut();
+
+export const currentUser = () => firebase.auth().currentUser;

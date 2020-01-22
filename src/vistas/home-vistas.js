@@ -1,72 +1,45 @@
 /* eslint-disable no-console */
-import { addNotes } from '../controller/home-controller.js';
+import { addDataPost } from '../controller/home-controller.js';
+import printPost from './post-vistas.js';
+import { currentUser } from '../model/autenticar-usuario.js';
 
-const notas = (post) => {
-  const items = document.createElement('div');
-  items.innerHTML = `
-  <p name='' id='showPost'>${post.publicaciones}</p>
-  `;
-  return items;
-};
-
-export default (objPosts) => {
-  const vistaMuro = document.createElement('main');
-  const home = `
-  <header>
-    <nav id='barraHorizontal'>
-      <figure id='figureLogo'>
-        <img src='img/logo.jpeg' id='logoLoginRegistro'>
-      </figure>
-      <button id="menu" class="menu">
-          <i class="icon-menu fas fa-bars"></i>
-          <ul class="ul-menu-mobile hide">      
-            <li class='home'>
-              <a class="nav-container-link" href='#/home'> MURO</a>
-            </li>
-            <li class='profile-header'>
-              <a  class="nav-container-link" href='#/profile'> PERFIL</a>
-            </li>
-            <li class='sign-out-mobile'>
-              <a class="nav-container-link">SALIR
-                <i id='sign-out' class="icon-log-out fas fa-sign-out-alt"></i>
-              </a>
-            </li>
-          </ul>
-      </button>
-    </nav>  
-  </header>
-  <section class='profile'>
-  <div class='front'>Usuario</div>
-  <span class='userProfile'>
-    <img src='https://image.flaticon.com/icons/png/512/145/145847.png' id='imgPerfil'>
-  </span>
-  <section id='publicar-posts' class='publicar-posts'>
-    <div class='card-create-post'>
-      <textarea name='' id='createPost' placeholder='¿Qué quieres compartir?'></textarea>
-      <i class="fas fa-image"></i>
-      <button id='addPost' class='share-post type='submit'>Compartir</button>
-    </div>
-  </section>
-  <div id="posts-container"></div>
-`;
-
-  vistaMuro.innerHTML = home;
-  const btnAddpost = vistaMuro.querySelector('#addPost');
-  btnAddpost.addEventListener('click', addNotes);
-  const postsContainer = vistaMuro.querySelector('#posts-container');
-  objPosts.forEach((post) => {
-    console.log(objPosts);
-    postsContainer.appendChild(notas(post));
+export default (dataPosts, dataUser) => {
+  const homeView = `
+    <section class='profile'>
+      <div class='front'></div>
+      <div class='user-profile'>
+        <img src='${dataUser.photoURL}' alt='' id='user-photo' class='user-photo'>
+        <div class='detail-user'>
+          <span id='user-name' class='name-user'>${dataUser.displayName}</span>
+        </div>
+      </div>
+    </section>
+    <section id='container-posts-general' class='container-posts-general'>
+      <div class='card-new-post'>
+        <textarea name='' id='' placeholder='¿Que quieres compartir?'></textarea>
+        <div class='footer-new-post'>
+          <i class='icon-general far fa-images'></i>
+          <select name="" id="type-new-post" class="type-new-post type-post">
+            <option value="1">Público</option>
+            <option value="0">Privado</option>
+          </select>
+          <button class='btn-share share-post type='submit'>COMPARTIR</button>
+        </div>
+      </div>
+      </div>
+      <section id='container-posts' class='container-posts'>
+      </section>
+    </section>`;
+  const mainELem = document.createElement('main');
+  mainELem.innerHTML = homeView;
+  const containerPosts = mainELem.querySelector('#container-posts');
+  dataPosts.forEach((post) => {
+    // publico: 1 ---- publico : 0
+    if (post.type === '1' || (post.idUser === currentUser().uid && post.type === '0')) {
+      containerPosts.appendChild(printPost(post));
+    }
   });
-  return vistaMuro;
+  const btnShare = mainELem.querySelector('button');
+  btnShare.addEventListener('click', addDataPost);
+  return mainELem;
 };
-/* export const divVistaHome = () => {
-  const divContenedorHome = document.createElement('div');
-  divContenedorHome.id = 'divVistaHome';
-
-  divContenedorHome.appendChild(notas());
-  divContenedorHome.appendChild(divVistaHome());
-
-
-  return divContenedorHome;
-}; */

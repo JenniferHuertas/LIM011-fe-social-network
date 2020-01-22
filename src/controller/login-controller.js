@@ -1,71 +1,103 @@
 /* eslint-disable no-console */
-import { inicioSesion } from '../model/autenticar-usuario.js';
+import {
+  signInUserEmail, signInUserFacebook, signInUserGoogle, signOut,
+} from '../model/autenticar-usuario.js';
+import {
+  addUserData,
+} from '../model/user-firestore.js';
 
-export const changeHash = (hash) => {
-  window.location.hash = hash;
+export const signInEmailEvent = (event) => {
+  event.preventDefault();
+  const btnLogin = event.target;
+  const email = btnLogin.closest('form').querySelector('input[type=email]');
+  const password = btnLogin.closest('form').querySelector('input[type=password]');
+  const msgError = btnLogin.closest('form').querySelector('#error-message');
+  const msgErrorEmail = btnLogin.closest('form').querySelector('#error-email');
+  const msgErrorPassword = btnLogin.closest('form').querySelector('#error-password');
+  if (email.value !== '' && password.value !== '') {
+    signInUserEmail(email.value, password.value)
+      .then((result) => {
+        if (result.user.emailVerified) {
+          window.location.hash = '#/home';
+        } else {
+          console.log('Realice la verificación de registro en su correo electrónico porfavor');
+        }
+      }).catch((error) => {
+        const errorCode = error.code;
+        console.log(errorCode);
+        if (errorCode === 'auth/invalid-email') {
+          msgError.innerHTML = 'El formato del correo electronico ingresado no es valido(*)';
+        } else if (errorCode === 'auth/wrong-password') {
+          msgError.innerHTML = 'La contraseña ingresada es incorrecta(*)';
+        } else if (errorCode === 'auth/user-not-found') {
+          msgError.innerHTML = 'El correo no se encuentra registrado(*)';
+        }
+      });
+  } else {
+    msgErrorEmail.innerHTML = 'Por favor ingrese un correo electrónico(*)';
+    msgErrorPassword.innerHTML = 'Por favor ingrese una contraseña(*)';
+  }
 };
 
-export const signInOnSubmit = (event) => {
+export const signFacebookEvent = (event) => {
   event.preventDefault();
+  signInUserFacebook()
+    .then((result) => {
+      const userId = result.user.uid;
+      const userObj = {
+        displayName: result.user.displayName,
+        photoURL: result.user.photoURL,
+        email: result.user.email,
+      };
+      addUserData(userId, userObj);
+      window.location.hash = '#/home';
+    }).catch((error) => {
+      const errorCode = error.code;
+      const erroMessage = error.message;
+      console.log(errorCode, erroMessage);
+      const email = error.email;
+      const credential = error.credential;
+      console.log(email, credential);
+    });
+};
 
-  const botonRegistro = event.target;
-  const email = botonRegistro.closest('form').querySelector('input[type=email]');
-  const password = botonRegistro.closest('form').querySelector('input[type=password]');
-  const textEmail = botonRegistro.closest('form').querySelector('span[name=messageEmail]');
-  const textPassword = botonRegistro.closest('form').querySelector('span[name=messagePassword]');
+export const signGoogleEvent = (event) => {
+  event.preventDefault();
+  signInUserGoogle()
+    .then((result) => {
+      const userId = result.user.uid;
+      const userObj = {
+        displayName: result.user.displayName,
+        photoURL: result.user.photoURL,
+        email: result.user.email,
+      };
+      addUserData(userId, userObj);
+      window.location.hash = '#/home';
+    }).catch((error) => {
+      const errorCode = error.code;
+      const erroMessage = error.message;
+      console.log(errorCode, erroMessage);
+    });
+};
 
+export const signOutSesion = (event) => {
+  event.preventDefault();
+  signOut()
+    .then((doc) => {
+      console.log('Sesión cerrada', doc);
+      window.location.hash = '#/login';
+    }).catch((error) => {
+      const errorCode = error.code;
+      const erroMessage = error.message;
+      console.log(errorCode, erroMessage);
+    });
+};
 
-  if (email.value !== '' && password.value !== '') {
-    inicioSesion(email.value, password.value)
-      .then(() => changeHash('/home'))
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-
-        if (errorCode === 'auth/invalid-email') {
-          email.value = '';
-          textPassword.value = '';
-          textEmail.innerHTML = `
-        <p style="font-size: 10px; margin: 3px; color: blue">El correo ingresado no es válido.</p>`;
-        }
-
-        if (errorCode === 'auth/user-disabled') {
-          email.value = '';
-          textPassword.value = '';
-          textPassword.innerHTML = `
-            <p style="font-size: 10px; margin: 3px; color: blue">El correo ingresado ha sido deshabilitado.</p>`;
-          textPassword.value = '';
-        }
-
-        if (errorCode === 'auth/user-not-found') {
-          email.value = '';
-          textPassword.value = '';
-          textEmail.innerHTML = `
-            <p style="font-size: 10px; margin: 3px; color: blue; float: center">El correo ingresado no pertenece a ningún<br> usuario.</p>`;
-        }
-
-        if (errorCode === 'auth/wrong-password') {
-          password.value = '';
-          textEmail.value = '';
-          textPassword.innerHTML = `
-            <p style="font-size: 10px; margin: 3px; color: blue">La contraseña ingresada es incorrecta.</p>`;
-        }
-
-        return errorMessage;
-      });
-  } else if (email.value === '' && password.value !== '') {
-    textPassword.value = '';
-    textEmail.innerHTML = `
-      <p style="font-size: 10px; margin: 3px; color: blue; float: center">Por favor, ingrese una dirección de correo<br> electrónico.</p>`;
-  } else if (email.value !== '' && password.value === '') {
-    password.value = '';
-    textEmail.value = '';
-    textPassword.innerHTML = `
-      <p style="font-size: 10px; margin: 3px; color: blue">Por favor, ingrese una contraseña.</p>`;
+export const passwordShow = () => {
+  const tipo = document.querySelector('#password-login');
+  if (tipo.type === 'password') {
+    tipo.type = 'text';
   } else {
-    textEmail.innerHTML = `
-      <p style="font-size: 10px; margin: 3px; color: blue; float: center">Por favor, ingrese una dirección de correo<br> electrónico.</p>`;
-    textPassword.innerHTML = `
-      <p style="font-size: 10px; margin: 3px; color: blue">Por favor, ingrese una contraseña.</p>`;
+    tipo.type = 'password';
   }
 };

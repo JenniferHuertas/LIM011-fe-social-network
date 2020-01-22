@@ -1,69 +1,63 @@
 /* eslint-disable no-console */
-import { registro, googleRegister } from '../model/autenticar-usuario.js';
-import { changeHash } from './login-controller.js';
+import { registerUserEmail } from '../model/autenticar-usuario.js';
+import { addUserData } from '../model/user-firestore.js';
 
-export const accountRegistration = (event) => {
+export default (event) => {
   event.preventDefault();
-
-  const botonLogin = event.target;
-  const name = botonLogin.closest('form').querySelectorAll('input[type=text]')[0];
-  const lastName = botonLogin.closest('form').querySelectorAll('input[type=text]')[1];
-  const email = botonLogin.closest('form').querySelector('input[type=email]');
-  const password = botonLogin.closest('form').querySelector('input[type=password]');
-  const textName = botonLogin.closest('form').querySelector('span[name=messageName]');
-  const textLastName = botonLogin.closest('form').querySelector('span[name=messageLastName]');
-  const textEmail = botonLogin.closest('form').querySelector('span[name=messageEmailRegistro]');
-  const textPassword = botonLogin.closest('form').querySelector('span[name=messagePasswordRegistro]');
-
-  if (name.value !== '' && lastName.value !== '' && email.value !== '' && password.value !== '') {
-    registro(email.value, password.value)
-      .then(() => changeHash('/home'))
-      .catch((error) => {
+  const btnRegister = event.target;
+  const email = btnRegister.closest('form').querySelector('input[type=email]');
+  const password = btnRegister.closest('form').querySelector('input[type=password]');
+  const nameUser = btnRegister.closest('form').querySelector('input[type=text]');
+  const msgError = btnRegister.closest('form').querySelector('#error-message');
+  const msgErrorEmail = btnRegister.closest('form').querySelector('#error-email');
+  const msgErrorPassword = btnRegister.closest('form').querySelector('#error-password');
+  if (email.value !== '' && password.value !== '') {
+    registerUserEmail(email.value, password.value)
+      .then((result) => {
+        console.log(result);
+        const redirectLogin = {
+          url: 'https://jennlindley.github.io/LIM011-fe-social-network/src/',
+        };
+        result.user.sendEmailVerification(redirectLogin).then(() => {
+          console.log('Para continuar por favor revise su correo el electronico y valide');
+          const userId = result.user.uid;
+          const userObj = {
+            displayName: nameUser.value,
+            photoURL: 'https://image.flaticon.com/icons/svg/149/149071.svg',
+            email: result.user.email,
+          };
+          addUserData(userId, userObj);
+          window.location.hash = '#/login';
+          nameUser.value = '';
+          email.value = '';
+          password.value = '';
+        }).catch((error) => {
+          console.error(error);
+        });
+      }).catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-
-        if (errorCode === 'auth/email-already-in-use') {
-          email.value = '';
-          textEmail.innerHTML = `
-            <p style="font-size: 10px; margin: 3px; color: blue">La dirección de correo electrónico ya existe.</p>`;
-        }
-        if (errorCode === 'auth/invalid-email') {
-          email.value = '';
-          textEmail.innerHTML = `
-            <p style="font-size: 10px; margin: 3px; color: blue">La dirección de correo electrónico no es válida.</p>`;
-        }
-        if (errorCode === 'auth/operation-not-allowed') {
-          email.value = '';
-          password.value = '';
-          textPassword.innerHTML = `
-            <p style="font-size: 10px; margin: 3px; color: blue">La dirección de correo electrónico o contraseña no se encuentra habilitada.</p>`;
-        }
-        if (errorCode === 'auth/operation-not-allowed') {
-          email.value = '';
-          textEmail.innerHTML = `
-            <p style="font-size: 10px; margin: 3px; color: blue">La dirección de correo electrónico no es válida.</p>`;
-        }
         if (errorCode === 'auth/weak-password') {
+          msgError.innerHTML = 'La contraseña ingresada es debil, ingrese 6 o más caracteres';
           password.value = '';
-          textPassword.innerHTML = `
-            <p style="font-size: 10px; margin: 3px; color: blue">La contraseña es demasiado débil.</p>`;
+        } else if (errorCode === 'auth/email-already-in-use') {
+          email.value = '';
+          msgError.innerHTML = ' El correo ingresado ya se encuentra registrado';
+        } else if (errorCode === 'auth/invalid-email') {
+          email.value = '';
+          msgError.innerHTML = 'el correo ingresado no es valido';
         }
-
-        return errorMessage;
       });
   } else {
-    textName.innerHTML = `
-      <p style="font-size: 10px; margin: 3px; color: blue">Por favor, ingrese un nombre.</p>`;
-    textLastName.innerHTML = `
-      <p style="font-size: 10px; margin: 3px; color: blue">Por favor, ingrese un apellido.</p>`;
+    msgErrorEmail.innerHTML = 'Por favor ingrese un correo electrónico(*)';
+    msgErrorPassword.innerHTML = 'Por favor ingrese una contraseña(*)';
   }
 };
 
-export const registerWithGoogle = () => {
-  googleRegister().then(() => {
-    changeHash('/home');
-  })
-    .catch((error) => {
-      console.log(error);
-    });
+export const passwordShow = () => {
+  const tipo = document.querySelector('#password-');
+  if (tipo.type === 'password') {
+    tipo.type = 'text';
+  } else {
+    tipo.type = 'password';
+  }
 };

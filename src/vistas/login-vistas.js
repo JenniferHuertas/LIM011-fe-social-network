@@ -1,73 +1,58 @@
-import { signInOnSubmit } from '../controller/login-controller.js';
-import { registerWithGoogle } from '../controller/register-controller.js';
+import {
+  signInEmailEvent,
+  signGoogleEvent,
+  signFacebookEvent,
+  passwordShow,
+} from '../controller/login-controller.js';
 
-// Figure:
-export const figureLoginRegistro = () => {
-  const figureLogin = document.createElement('figure');
-  figureLogin.id = 'figureLoginRegistro';
+export default () => {
+  const loginView = `
+    <section class='section-banner'>
+      <div class='container-banner'>
+      </div>      
+    </section>
+    <section class='section-main'>
+      <div class='container-logo'>
+        <img src='./img/logo.jpeg' alt='logo' class='icon-logo-main'>
+      </div>      
+      <form action='' class='form'>
+        <p>¡Bienvenidos!</p>
+        <p> Sé parte de esta red</p>
+        <input type='email' id='email-login' class='input-text' placeholder='Email' required>
+        <div class='pass-eye'> 
+          <input type='password' id='password-login' class='input-password' placeholder='Password' required>
+          <button class='eye-class btn-post'>
+            <i id='btn-eye' class='fas fa-unlock-alt icon-general'></i>
+          </button>
+        </div>
+        
 
-  const imageEncabezado = `
-    <img src='https://image.freepik.com/vector-gratis/comida-sana-personas_24908-55204.jpg' id='imgPrincipal'>
-  `;
+        
+        <button id='btn-login' class='btn btn-general' type='submit'>INGRESAR</button>
+        <div class='container-errors'>
+          <span class='errors' id='error-email'></span>
+          <span class='errors' id='error-message'></span>
+          <span class='errors' id='error-password'></span>
+          <span class='errors' id='error-email'></span>
+        </div>
+        <p>Ó bien ingresa con...</p>
+      <button id='btn-facebook' class='btn-social-net' type='submit'><img src="https://image.flaticon.com/icons/svg/733/733547.svg" alt=""></button>
+      <button id='btn-google' class='btn-social-net' type='submit'><img src="https://image.flaticon.com/icons/png/512/720/720255.png" alt=""></button>
+      <p>¿No tienes una cuenta? <a class='c-orange' href='#/register'>Regístrate</a></p>
+      </form>`;
 
-  figureLogin.innerHTML = imageEncabezado;
+  const mainElem = document.createElement('main');
+  mainElem.className = 'viewLogin';
+  mainElem.innerHTML = loginView;
 
-  return figureLogin;
-};
+  const btnLogin = mainElem.querySelector('#btn-login');
+  btnLogin.addEventListener('click', signInEmailEvent);
+  const btnFacebook = mainElem.querySelector('#btn-facebook');
+  btnFacebook.addEventListener('click', signFacebookEvent);
+  const btnGoogle = mainElem.querySelector('#btn-google');
+  btnGoogle.addEventListener('click', signGoogleEvent);
+  const showPass = mainElem.querySelector('#btn-eye');
+  showPass.addEventListener('click', passwordShow);
 
-
-// Main Login
-const mainLoginForm = () => {
-  const mainLogin = document.createElement('main');
-  mainLogin.id = 'mainLogin';
-
-  const inicioLogin = `
-           <figure id='figureLogo'>
-              <img src='img/logo.jpeg' id='logoLoginRegistro'>
-           </figure>
-          <section id='seccionForm'>
-              <p class='parrafo'>¡Bienvenido!</p>
-              <form action="#" method="post">
-                  <div class='inputEmail'>
-                    <input type='email' class='inputRegistro' placeholder='Email' maxlength='30' name='usuarioLogin'>
-                    <i class="fas fa-at"></i>
-                  </div>
-                  <span name='messageEmail'></span>
-                  <div class='inputPassword'>
-                    <input type='password' class='inputRegistro' placeholder='Password' name='passwordLogin' minlength='6'>
-                    <i class="fas fa-key"></i>
-                  </div>
-                  <span name='messagePassword'></span>
-                  <button type='button' id='botonLogin'>Log in</button>
-              </form>
-              <p class='parrafo'>O bien ingresa con...</p>
-            <div id='iconoRedesSociales'>
-                <button type="button" id="btnLoginGoogle"><a href='#'><img src='https://icon-library.net/images/google-icon-search/google-icon-search-19.jpg' class='iconRed'></a></button>
-            </div>
-            <p class='parrafo'>¿No tienes una cuenta? <a href="#/creacuenta" id='enlaceRegistro'>Regístrate</a></p>   
-          </section>   
-        `;
-
-  mainLogin.innerHTML = inicioLogin;
-
-  const eventoBotonLogin = mainLogin.querySelector('#botonLogin');
-  eventoBotonLogin.addEventListener('click', signInOnSubmit);
-
-  const btnLogInGoogle = mainLogin.querySelector('#btnLoginGoogle');
-  btnLogInGoogle.addEventListener('click', registerWithGoogle);
-
-  return mainLogin;
-};
-
-
-// Div contenedor de vista Login
-export const divVistaLogin = () => {
-  const divContenedorLogin = document.createElement('div');
-  divContenedorLogin.id = 'divVistaLogin';
-
-  divContenedorLogin.appendChild(figureLoginRegistro());
-  divContenedorLogin.appendChild(mainLoginForm());
-
-
-  return divContenedorLogin;
+  return mainElem;
 };
