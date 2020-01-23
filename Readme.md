@@ -81,59 +81,59 @@ Antes de empezar el proyecto, recuerda agregar tus objetivos de aprendizaje pend
 
 ## Objetivos de Aprendizaje Pendientes
 
-[ x] Manipular arrays (filter | map | sort | reduce). 
-[ x] Entender el uso de bucles (for | forEach). 
+[x] Manipular arrays (filter | map | sort | reduce). 
+[x] Entender el uso de bucles (for | forEach). 
 [ ] Entender la diferencia entre expression y statements. 
-[ x] Utilizar funciones (parámetros | argumentos | valor de retorno). 
-[ x] Utilizar ES Modules (import | export).
+[x] Utilizar funciones (parámetros | argumentos | valor de retorno). 
+[x] Utilizar ES Modules (import | export).
 
 ## HTML y CSS
 
-[ x ] HTML semántico
+[x] HTML semántico
 [ ] CSS flexbox
-[ x ] Construir tu aplicación respetando el diseño realizado (maquetación).
+[x] Construir tu aplicación respetando el diseño realizado (maquetación).
 
 ## DOM y Web APIs
 
-[ x ] Manipulación dinámica del DOM
+[x] Manipulación dinámica del DOM
 [ ] History API
 
 ## Javascript
 
-[ x] Uso de callbacks
-[ x] Consumo de Promesas
-[ x] Uso ES modules (import | export)
+[x] Uso de callbacks
+[x] Consumo de Promesas
+[x] Uso ES modules (import | export)
 
 ## Firebase
 
-[ x] Firestore
-[ x] Firebase Auth
+[x] Firestore
+[x] Firebase Auth
 [ ] Firebase security rules
-[ x] Uso de onSnapshot | onAuthStateChanged
+[x] Uso de onSnapshot | onAuthStateChanged
 
 ## Testing
 
-[ x] Testeo de tus funciones
-[ x] Testeo asíncrono
-[ x] Mocking
+[x] Testeo de tus funciones
+[x] Testeo asíncrono
+[x] Mocking
 
 ## Colaboración en Github
 
-[ x] Branches
-[ x] Pull Requests
+[x] Branches
+[x] Pull Requests
 [ ] Tags
 
 ## Organización en Github
 
-[ x] Projects
-[ x] Issues
+[x] Projects
+[x] Issues
 [ ] Labels
 [ ] Milestones
 
 ## Buenas prácticas de desarrollo
 
-[ x] Modularización
-[ x] Nomenclatura / Semántica
-[ x] Linting
-probando
+[x] Modularización
+[x] Nomenclatura / Semántica
+[x] Linting
+
 

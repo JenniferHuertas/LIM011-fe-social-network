@@ -1,84 +1,38 @@
-import { figureLoginRegistro } from './login-vistas.js';
-import { accountRegistration, registerWithGoogle } from '../controller/register-controller.js';
+import registerUserEmailEvent, { passwordShow } from '../controller/register-controller.js';
 
+export default () => {
+  const registerView = `
+    <section class='section-banner'>
+    </section>
+    <section class='section-main'>
+      <div class='container-logo'>
+        <img src='./img/logo.jpeg' alt='logo' class='icon-logo-main'>
+      </div>
+      <p> Crea una cuenta</p>
+      <form>
+        <input id='username' type='text' class='input-text' placeholder='Nombre de usuario'>      
+        <input id='email-register' type='email' class='input-text'  placeholder='Correo Electronico'>
+        <div class='pass-eye'> 
+          <input type='password' id='password-login' class='input-password' placeholder='Password' required>
+          <button class='eye-class btn-post'>
+            <i id='btn-eye' class='fas fa-unlock-alt icon-general'></i>
+          </button>
+        </div>
+        <span class='errors' id='error-message'></span>
+        <span class='errors' id='error-password'></span>
+        <span class='errors' id='error-email'></span>
+      </div>
+        <button id='btn-register' class='btn btn-general' type='submit'>REGISTRAME</button>
+        <p>¿Ya tienes una cuenta? <a href='#/login'>Inicia Sesión</a></p>
+        </form>
+    </section> `;
 
-// Main Registro
-const mainRegistroForm = () => {
-  const mainRegistro = document.createElement('main');
-  mainRegistro.id = 'mainRegistro';
-
-  const inicioRegistro = `
-        <figure id='figureLogo'>
-          <img src='img/logo.jpeg' id='logoLoginRegistro'>
-        </figure>
-        <section id='seccionForm'>
-            <p class='parrafo'>Crea una cuenta.</p>
-            <form action='#' method='post'>
-              <div class='inputName'>
-                <input type='text' id='name' class='inputRegistro' name='nombreUsuario' placeholder='Nombre' maxlength='30' minlength='2'>
-                <i class="fas fa-user"></i>
-              </div>
-              <span name='messageName'></span>
-              <div class='inputLastName'>
-                <input type='text' id='lastName' class='inputRegistro' name='appellidoUsuario' placeholder='Apellido' maxlength='30' minlength='2'>
-                <i class="fas fa-user"></i>
-              </div>
-              <span name='messageLastName'></span>
-              <div class='inputEmail'>
-                <input type='email' class='inputRegistro' placeholder='Email' maxlength='30' name='emailUsuario'>
-                <i class="fas fa-at"></i>  
-              </div>
-              <span name='messageEmailRegistro'></span>
-              <div class='inputPassword'>
-                <input type='password' class='inputRegistro' placeholder='Password' name='password' minlength='6'>
-                <i class="fas fa-key"></i>
-              </div>
-              <span name='messagePasswordRegistro'></span>
-              <div>
-                <section>
-                  <label for="fecha-nac">Fecha de nacimiento:</label><br>
-                  <input type="date" name="fecha-nac" id="fecha-nac"><br>
-                </section>
-                <section>
-                  <label for="sexo">Sexo:</label><br>
-                  <select name="sexo" id="sexo">
-                    <option value="option" selected disabled>Seleccione</option>
-                    <option value="mujer">Mujer</option>
-                    <option value="hombre">Hombre</option>
-                    <option value="personalizado">Personalizado</option>
-                  </select>
-                </section>
-              </div>
-              <button type='button' id='botonRegistro'>Regístrate</button>
-            </form>
-            <p class='parrafo'>O bien regístrate con...</p>
-            <div id='iconoRedesSociales'>
-                <button><a href='#'><img src='https://image.flaticon.com/icons/png/512/2392/premium/2392485.png' class='iconRed'></a></button>
-                <button type="button" id="btnRegisterGoogle"><a href='#'><img src='https://icon-library.net/images/google-icon-search/google-icon-search-19.jpg' class='iconRed'></a></button>
-            </div>
-            <p class='parrafo'>¿Tienes una cuenta? <a href="#/iniciasesion" id='enlaceRegistro'>Inicia Sesión</a></p>
-        </section>     
-      `;
-
-  mainRegistro.innerHTML = inicioRegistro;
-
-  const botonRegistro = mainRegistro.querySelector('#botonRegistro');
-  botonRegistro.addEventListener('click', accountRegistration);
-
-  const btnLogInGoogle = mainRegistro.querySelector('#btnRegisterGoogle');
-  btnLogInGoogle.addEventListener('click', registerWithGoogle);
-
-  return mainRegistro;
-};
-
-
-// Div contenedor vista Registro
-export const divVistaRegistro = () => {
-  const divContenedorRegistro = document.createElement('div');
-  divContenedorRegistro.id = 'divVistaRegistro';
-
-  divContenedorRegistro.appendChild(figureLoginRegistro());
-  divContenedorRegistro.appendChild(mainRegistroForm());
-
-  return divContenedorRegistro;
+  const mainElem = document.createElement('main');
+  mainElem.className = 'viewRegister';
+  mainElem.innerHTML = registerView;
+  const btnRegister = mainElem.querySelector('#btn-register');
+  btnRegister.addEventListener('click', registerUserEmailEvent);
+  const showPass = mainElem.querySelector('#btn-eye');
+  showPass.addEventListener('click', passwordShow);
+  return mainElem;
 };

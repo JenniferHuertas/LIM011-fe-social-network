@@ -1,36 +1,70 @@
-import { inicioSesion, registro, googleRegister } from '../src/model/autenticar-usuario';
+import {
+  signInUserEmail,
+  signInUserGoogle,
+  signInUserFacebook,
+  registerUserEmail,
+  signOut,
+  currentUser,
+} from '../src/model/autenticar-usuario.js';
+
 
 const firebasemock = require('firebase-mock');
 
-const mockauth = new firebasemock.MockFirebase();
-const mockfirestore = new firebasemock.MockFirestore();
-mockfirestore.autoFlush();
-mockauth.autoFlush();
-
+const mockAuth = new firebasemock.MockAuthentication();
+mockAuth.autoFlush();
 global.firebase = firebasemock.MockFirebaseSdk(
-  // use null if your code does not use RTDB
   () => null,
-  () => mockauth,
-  () => mockfirestore,
+  () => mockAuth,
 );
 
-describe('inicioSesion', () => {
-  it('Debería poder iniciar sesion', () => inicioSesion('front@end.la', '123456')
-    .then((user) => {
-      expect(user.email).toBe('front@end.la');
-    }));
-});
-
-describe('registro', () => {
-  it('Debería poder registrarse', () => registro('front@end.la', '123456')
-    .then((user) => {
-      expect(user.email).toBe('front@end.la');
-    }));
-});
-
-describe('googleRegister', () => {
-  it('Debería poder registrarse con google', () => googleRegister()
+describe('Sign In User', () => {
+  it('Debería poder iniciar sesión', () => signInUserEmail('jennifersu2059@gmail.com', '123456')
     .then((user) => {
       expect(user.isAnonymous).toBe(false);
     }));
+});
+
+describe('Sign In User with google', () => {
+  it('Debería poder iniciar sesión', () => signInUserGoogle()
+    .then((user) => {
+      expect(user.isAnonymous).toBe(false);
+    }));
+});
+
+describe('Sign In User with facebook', () => {
+  it('Debería poder iniciar sesión', () => signInUserFacebook()
+    .then((user) => {
+      expect(user.isAnonymous).toBe(false);
+    }));
+});
+
+describe('Register User with email', () => {
+  it('Debería poder registrarse', () => signInUserEmail('jennifersu2059@gmail.com', '123456')
+    .then((user) => {
+      expect(user.isAnonymous).toBe(false);
+    }));
+});
+
+describe('Sign out user', () => {
+  it('Debería poder cerrar sesión', () => signOut()
+    .then((user) => {
+      expect(user).toBe(undefined);
+    }));
+});
+
+describe('Register user', () => {
+  it('Debería registrar un usuario', () => registerUserEmail('jennifersu2059@gmail.com', '123456')
+    .then((user) => {
+      expect(user.isAnonymous).toBe(false);
+    }));
+});
+
+describe('Current User', () => {
+  it('Should show current user', () => {
+    signInUserEmail('jennifersu2059@gmail.com', '123456')
+      .then(() => {
+        const user = currentUser();
+        expect(user.email).toBe('jennifersu2059@gmail.com.com');
+      });
+  });
 });
