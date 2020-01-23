@@ -1,7 +1,7 @@
 import { components } from '../utils/util-views.js';
 import { getPosts } from '../model/publicar-post.js';
 import { currentUser } from '../model/autenticar-usuario.js';
-import { getUserData } from '../model/user-firestore.js';
+import { getUserData } from '../model/usuarios-firestore.js';
 import { getComments } from '../model/comentarios-post.js';
 
 export const changeView = (hash) => {
@@ -13,7 +13,7 @@ export const changeView = (hash) => {
     case '#/login':
       container.appendChild(components.login());
       break;
-    case '#/register':
+    case '#/creacuenta':
       container.appendChild(components.createAccount());
       break;
     case '#/home':

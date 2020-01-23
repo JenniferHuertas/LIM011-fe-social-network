@@ -5,6 +5,7 @@ export const addUserData = (userId, userObj) => {
 
 export const getUserData = idUser => firebase.firestore().collection('users').doc(idUser).get();
 
+
 export const updateProfile = (idProfile, newTextProfileName,
   newcountry) => {
   const result = firebase.firestore().collection('users').doc(idProfile).update({

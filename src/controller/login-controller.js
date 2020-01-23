@@ -4,7 +4,7 @@ import {
 } from '../model/autenticar-usuario.js';
 import {
   addUserData,
-} from '../model/user-firestore.js';
+} from '../model/usuarios-firestore.js';
 
 export const signInEmailEvent = (event) => {
   event.preventDefault();

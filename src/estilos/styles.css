@@ -8,6 +8,7 @@ body {
   margin: 0;
   padding: 0;
   background: #f1dcf8;
+  box-sizing: border-box;
 }
 
 .container-errors {
@@ -45,6 +46,14 @@ a{
     margin: 0;
     list-style-type: disc;
     background-color: #754857;
+  }
+
+  ul li a{
+    color: #f1dcf8;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    width: 100vw;
   }
   
   li{
@@ -86,14 +95,6 @@ a{
   li:hover{
     background-color: #ff9800;
   }
-  
-  ul li a{
-    color: #f1dcf8;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    width: 100vw;
-  }
 
   .ul-menu-mobile{
     width: 100vw;
@@ -108,7 +109,6 @@ a{
     height: calc(100% - 48px);
     display: block;
     width: 100%;
-    box-sizing: border-box;
   }
 
   .section-banner{
@@ -125,7 +125,6 @@ a{
     align-content: center;
     height: 100vh;
     padding: 20px;
-    box-sizing: border-box;
   }
 
   .container-logo{
@@ -186,18 +185,23 @@ a{
     height: auto;
     padding: 24px;
     padding-bottom: 0px;
-    box-sizing: border-box;
     margin-right: 20px;
     margin-top: 0px;
     background-color: #f1dcf8;
     padding-top: 48px;
   }
 
+  .user-photo{
+    margin-left: 15px;
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+  }
+
   .container-profile{
     width: 100%;
     height: auto;
     padding: 4px;
-    box-sizing: border-box;
     margin-right: 20px;
     margin-top: 0px;
     background-color: #f1dcf8;  
@@ -215,7 +219,6 @@ a{
     width: 100%;
     height: auto;
     padding: 0px 24px 0px 24px;
-    box-sizing: border-box;
     margin-top: 0px;
     background-color: #f1dcf8;
   }
@@ -225,7 +228,6 @@ a{
     height: auto;  
     margin-top: 0px;
     padding: 0px 10px;
-    box-sizing: border-box;
   }
 
   .form-profile{
@@ -233,7 +235,6 @@ a{
     flex-wrap: wrap;
     justify-content: flex-start;
     border: 1px solid #bebebe;
-    box-sizing: border-box;
     padding: 0px 10px 10px;
     border-radius: 8px;
     background-color: #d6d6d6;
@@ -253,6 +254,10 @@ a{
   .form-profile input{
     width: 100%;
     text-align: left;
+  }
+
+  .container-button{
+    width: 100%;
   }
 
   .form-profile .container-button{
@@ -289,12 +294,6 @@ a{
     margin-left: 15px;
   }
 
-  .user-photo{
-    margin-left: 15px;
-    height: 65px;
-    width: 65px;
-    border-radius: 50%;
-  }
   .user-photos{
     margin-left: 15px;
     height: 60%;
@@ -311,7 +310,6 @@ a{
     justify-content: left;
     flex-wrap: wrap;
     align-content: center;
-    box-sizing: border-box;
   }
 
   .detail-user > span{
@@ -353,7 +351,6 @@ a{
   .comment {
     display: inline-block;
     flex-direction: column;
-    box-sizing: border-box;
   }
 
   .body-comment{
@@ -364,13 +361,11 @@ a{
   .get-comments{
     width: 100%;
     padding-left: 4px;
-    box-sizing: border-box;
   }
 
   .comment-name-user{
     width: 100%;
     padding-left: 4px;
-    box-sizing: border-box;
     margin: 4px 0px 0px;
     color: #000000;
   }
@@ -407,9 +402,6 @@ a{
     padding: 15px 0px 0px 5px;
     border-radius: 10px;
     margin: 5px;
-  }
-  .comment {
-    display: flex;
   }
 
   .add-comment {
@@ -454,9 +446,7 @@ a{
     justify-content: space-between;
     align-items: center;
     background-color: #d6d6d6;
-    box-sizing: border-box;
     border: 1px solid #bebebe;
-    box-sizing: border-box;
     border-radius: 8px 8px 0px 0px;
   }
 
@@ -472,7 +462,6 @@ a{
     align-items: center;
     justify-content: space-around;
     background-color: #d6d6d6;
-    box-sizing: border-box;
     border-radius: 0px 0px 8px 8px;
   }
 
@@ -541,10 +530,6 @@ a{
   .main-profile{
     padding: 26px;
     height: calc(100vh - 106px);
-  }
-
-  .container-button{
-    width: 100%;
   }
 
   .button-save{
@@ -720,7 +705,6 @@ a{
     margin-top: 36px;
     height: calc(100vh - 90px);
     border-radius: 8px;
-    box-sizing: border-box;
     padding: 0px;
     padding-top: 48px;
   }

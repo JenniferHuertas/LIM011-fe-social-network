@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { registerUserEmail } from '../model/autenticar-usuario.js';
-import { addUserData } from '../model/user-firestore.js';
+import { addUserData } from '../model/usuarios-firestore.js';
 
 export default (event) => {
   event.preventDefault();

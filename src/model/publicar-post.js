@@ -7,15 +7,15 @@ export const addPost = (objPost) => {
 export const getPosts = (callback) => {
   const result = firebase.firestore().collection('posts').orderBy('date', 'desc')
     .onSnapshot((querySnapshot) => {
-      const arr = [];
+      const newArray = [];
       querySnapshot.forEach((doc) => {
         const obj = {
           id: doc.id,
           ...doc.data(),
         };
-        arr.push(obj);
+        newArray.push(obj);
       });
-      callback(arr);
+      callback(newArray);
     });
   return result;
 };

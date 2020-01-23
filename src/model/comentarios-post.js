@@ -6,15 +6,15 @@ export const addComment = (objComment) => {
 export const getComments = (idPost, callbackComment) => {
   firebase.firestore().collection('comments').where('idPost', '==', idPost)
     .onSnapshot((querySnapshot) => {
-      const arr = [];
+      const newArray = [];
       querySnapshot.forEach((doc) => {
         const obj = {
           id: doc.id,
           ...doc.data(),
         };
-        arr.push(obj);
+        newArray.push(obj);
       });
-      callbackComment(arr);
+      callbackComment(newArray);
     });
 };
 

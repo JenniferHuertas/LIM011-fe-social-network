@@ -6,7 +6,7 @@ export default () => {
     </section>
     <section class='section-main'>
       <div class='container-logo'>
-        <img src='./img/logo.jpg' alt='logo' class='icon-logo-main'>
+        <img src='./img/logo.jpeg' alt='logo' class='icon-logo-main'>
       </div>
       <p> Crea una cuenta</p>
       <form>
