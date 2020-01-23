@@ -51,6 +51,6 @@ export const changeView = (hash) => {
         });
       break;
     default:
-      container.appendChild(components.login());
+      container.appendChild(components.different());
   }
 };

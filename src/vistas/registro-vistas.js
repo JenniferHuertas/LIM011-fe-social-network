@@ -21,10 +21,9 @@ export default () => {
         <span class='errors' id='error-message'></span>
         <span class='errors' id='error-password'></span>
         <span class='errors' id='error-email'></span>
-      </div>
         <button id='btn-register' class='btn btn-general' type='submit'>REGISTRAME</button>
         <p>¿Ya tienes una cuenta? <a href='#/login'>Inicia Sesión</a></p>
-        </form>
+      </form>
     </section> `;
 
   const mainElem = document.createElement('main');

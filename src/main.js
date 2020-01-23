@@ -13,6 +13,7 @@ const configInitial = () => {
   };
   firebase.initializeApp(firebaseConfig);
 
+
   initRouter();
 };
 window.addEventListener('load', configInitial);

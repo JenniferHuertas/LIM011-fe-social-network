@@ -7,7 +7,7 @@ export const eventUpdateProfile = (event) => {
   const iduser = currentUser().uid;
   const newname = document.querySelector('#u-name');
   const newcountry = document.querySelector('#u-country').value;
-  if (currentUser().uid !== 'undefined');
+  if (currentUser().uid !== 'null');
   updateProfile(iduser, newname.value, newcountry)
     .then((doc) => {
       window.location.hash = '#/profile';
